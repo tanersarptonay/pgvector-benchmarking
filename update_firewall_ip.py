@@ -2,7 +2,7 @@ import subprocess
 import requests
 
 # Constants
-PROJECT_ID = "pgvector-benchmark-2"  # Replace with your Google Cloud project ID
+PROJECT_ID = "pgvector-benchmark-2"  # Replace with your Google Cloud project ID.
 LOAD_GENERATOR_INTERNAL_IP = "10.214.0.3/32"  # Replace with the internal IP of your Load Generator
 POSTGRESQL_INTERNAL_IP = "10.214.0.4/32"  # Replace with the internal IP of your PostgreSQL VM
 
