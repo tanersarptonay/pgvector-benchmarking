@@ -1,0 +1,27 @@
+{
+  "generator": {
+      "num_rows": 1000,
+      "dimensions": 128,
+      "batch_size": 100,
+      "seed": 23,
+      "recreate_tables": true,
+      "copy_data": true,
+      "maintenance_work_mem": "1GB",
+      "tables": {
+        "items_no_index_1M": null,
+        "items_ivfflat_1M": "ivfflat",
+        "items_hnsw_1M": "hnsw"
+      },
+      "index_configs": {
+        "ivfflat": "WITH (lists = 100)",
+        "hnsw": "WITH (m = 16, ef_construction = 100)"
+      } 
+  },
+  "db": {
+      "host": "localhost",
+      "port": 5433,
+      "dbname": "test_db",
+      "user": "postgres",
+      "password": "wildone813"
+  }
+}

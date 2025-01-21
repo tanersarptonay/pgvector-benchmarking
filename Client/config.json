@@ -1,0 +1,16 @@
+{
+    "db": {
+        "host": "34.32.64.135",
+        "port": 5433,
+        "dbname": "test_db",
+        "user": "postgres",
+        "password": "wildones813"
+    },
+    "benchmark": {
+        "tables": ["items_no_index", "items_ivfflat", "items_hnsw"],
+        "query_configs": [
+            {"num_queries": 100, "num_clients": 10}
+        ],
+        "dimensions": 128
+    }
+}
