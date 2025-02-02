@@ -22,10 +22,10 @@ def cleanup(signum, frame):
     sys.exit(0)
 
 if __name__ == "__main__":
-    # Set up logging
-    setup_logger("benchmark.log")
+    # Optional: You can still use a simple or advanced logger setup.
+    setup_logger("benchmark.log")  # from your existing utils.py
 
-    # Attach signal handlers
+    # Attach signal handlers for graceful shutdown
     signal.signal(signal.SIGINT, cleanup)
     signal.signal(signal.SIGTERM, cleanup)
 
@@ -42,7 +42,12 @@ if __name__ == "__main__":
         dimensions = benchmark_config["dimensions"]
 
         # Initialize and start benchmark
-        benchmark_runner = BenchmarkRunner(tables, query_configs, dimensions=dimensions, db_config=db_config)
+        benchmark_runner = BenchmarkRunner(
+            tables=tables,
+            query_configs=query_configs,
+            dimensions=dimensions,
+            db_config=db_config
+        )
         benchmark_runner.start()
 
     except Exception as e:

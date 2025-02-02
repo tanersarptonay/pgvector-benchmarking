@@ -10,6 +10,7 @@ class DBConnector:
     def connect(self):
         """Establish a database connection."""
         try:
+            print("Trying to connect to the database...")
             self.conn = psycopg2.connect(
                 host=self.config["host"],
                 port=self.config["port"],
