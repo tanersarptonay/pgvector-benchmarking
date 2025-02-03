@@ -7,6 +7,8 @@ SNAPSHOT_NAME = "pgvector-bootable-snap"
 BASE_VM_NAME = "postgresql-vm"
 
 DIMENSIONS_DISK_SIZES = {
+    128: 50,
+    256: 50,
     512: 100
 }
 
