@@ -30,6 +30,9 @@ class BenchmarkRunner:
         if not os.path.exists(self.benchmark_result_folder):
             os.makedirs(self.benchmark_result_folder)
 
+        if not os.path.exists(self.latencies_folder):
+            os.makedirs(self.latencies_folder)
+
         # Set up logging
         log_file_path = os.path.join(self.benchmark_result_folder, f"query_benchmark_{current_time}.log")
         logging.basicConfig(
