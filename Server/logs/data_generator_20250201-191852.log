@@ -1,0 +1,4 @@
+2025-02-01 19:18:52,059 - ERROR - Failed to connect to the database: connection to server at "localhost" (127.0.0.1), port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-02-01 19:18:52,060 - INFO - Database connection closed.
