@@ -11,13 +11,12 @@
       "password": "wildones813"
     },
     "benchmark": {
-      "tables": ["items_no_index_128_1M", "items_ivfflat_128_1M", "items_hnsw_128_1M",
-                 "items_no_index_128_5M", "items_ivfflat_128_5M", "items_hnsw_128_5M"],
+      "tables": [
+        "items_no_index_256_1M", "items_ivfflat_256_1M", "items_hnsw_256_1M", 
+        "items_no_index_256_5M", "items_ivfflat_256_5M", "items_hnsw_256_5M"
+      ],
       "query_configs": [
-        { "num_queries": 100,   "num_clients": 10   },
-        { "num_queries": 5000,  "num_clients": 10   },  
-        { "num_queries": 5000,  "num_clients": 50   },  
-        { "num_queries": 5000,  "num_clients": 100  }
+        { "num_queries": 1000,  "num_clients": 5000 }
       ],
       "dimensions": 128
     }
