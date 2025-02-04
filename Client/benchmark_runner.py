@@ -227,5 +227,6 @@ class BenchmarkRunner:
                         self.results.append(result)
 
             self.save_results()
+
         finally:
             self.shutdown()
