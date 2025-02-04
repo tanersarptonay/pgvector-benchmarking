@@ -119,6 +119,24 @@ class BenchmarkRunner:
             "throughput": throughput
         }
 
+    def apply_postgresql_settings(self):
+        """Optimize PostgreSQL settings for high-concurrency query benchmarking."""
+        with self.db.get_cursor() as cursor:
+            # Memory settings for efficient query execution
+            cursor.execute("SET work_mem = '256MB';")  # Allocate more memory per query
+            cursor.execute("SET effective_cache_size = '24GB';")  # Help query planner use OS cache
+
+            # Enable parallel execution for faster queries
+            cursor.execute("SET max_parallel_workers_per_gather = 6;")  # Allow parallel execution
+            cursor.execute("SET parallel_tuple_cost = 0.1;")
+            cursor.execute("SET parallel_setup_cost = 50;")
+            cursor.execute("SET force_parallel_mode = 'off';")  # Let PostgreSQL decide best parallelism
+
+            # Optimize for multi-client workloads
+            cursor.execute("SET idle_in_transaction_session_timeout = '5min';")  # Close idle connections
+            cursor.execute("SET statement_timeout = '300000';")  # Prevent long-running queries from blocking
+            logging.info("Applied PostgreSQL settings for multi-client benchmarking.")
+
     def run_benchmark(self, table_name, num_queries, num_clients, warm_up=False):
         """
         Run the benchmark for a single table with the given concurrency.
@@ -201,6 +219,21 @@ class BenchmarkRunner:
 
         logging.info(f"Results saved to {self.results_file}.")
 
+    def append_result_to_csv(self, result_entry):
+        """Append a single result entry to the CSV file in real-time."""
+        file_exists = os.path.isfile(self.results_file)
+
+        with open(self.results_file, mode="a", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=result_entry.keys())
+
+            # Write header only if the file is new
+            if not file_exists:
+                writer.writeheader()
+
+            writer.writerow(result_entry)
+
+        logging.info(f"Appended result for {result_entry['table_name']} to CSV.")
+
     def shutdown(self):
         """Close DB connection and log final message."""
         self.db.close()
@@ -210,6 +243,8 @@ class BenchmarkRunner:
         """Run the benchmarks for all configurations."""
         try:
             self.db.connect()
+            self.apply_postgresql_settings()
+
             for config in self.query_configs:
                 # Some users put "warm_up" in the config, default to False if missing
                 warm_up = config.get("warm_up", False)
@@ -223,10 +258,11 @@ class BenchmarkRunner:
                         num_clients=num_clients,
                         warm_up=warm_up
                     )
-                    if result:  # will be None if warm_up==True
+                    
+                    if results:
                         self.results.append(result)
+                        self.append_result_to_csv(result)
 
-            self.save_results()
 
         finally:
             self.shutdown()
