@@ -1,0 +1,4 @@
+2025-02-04 13:15:58,551 - INFO - Connected to PostgreSQL database.
+2025-02-04 13:15:58,551 - ERROR - Failed to configure the database session: parameter "shared_buffers" cannot be changed without restarting the server
+
+2025-02-04 13:15:58,552 - INFO - Database connection closed.

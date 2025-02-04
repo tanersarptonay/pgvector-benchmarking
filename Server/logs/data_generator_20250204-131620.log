@@ -1,0 +1,4 @@
+2025-02-04 13:16:20,836 - INFO - Connected to PostgreSQL database.
+2025-02-04 13:16:20,837 - INFO - PostgreSQL settings optimized for index building and benchmarking.
+2025-02-04 13:16:20,837 - ERROR - Failed to configure the database session: name 'maintenance_work_mem' is not defined
+2025-02-04 13:16:20,837 - INFO - Database connection closed.

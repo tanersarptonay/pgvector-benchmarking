@@ -1,0 +1,19 @@
+2025-02-04 13:17:05,725 - INFO - Connected to PostgreSQL database.
+2025-02-04 13:17:05,726 - INFO - PostgreSQL settings optimized for index building and benchmarking.
+2025-02-04 13:17:05,726 - INFO - Set maintenance_work_mem to 4GB.
+2025-02-04 13:17:05,726 - INFO - Recreating tables...
+2025-02-04 13:17:05,736 - INFO - Table items_no_index_128_5M recreated successfully.
+2025-02-04 13:17:05,742 - INFO - Table items_ivfflat_128_5M recreated successfully.
+2025-02-04 13:17:05,747 - INFO - Table items_hnsw_128_5M recreated successfully.
+2025-02-04 13:17:05,747 - INFO - Populating table items_no_index_128_5M with 5000000 embeddings...
+2025-02-04 13:43:41,699 - INFO - Table items_no_index_128_5M populated successfully.
+2025-02-04 13:43:41,699 - INFO - Copying data from items_no_index_128_5M to items_ivfflat_128_5M...
+2025-02-04 13:44:12,974 - INFO - Data copied to items_ivfflat_128_5M.
+2025-02-04 13:44:12,974 - INFO - Copying data from items_no_index_128_5M to items_hnsw_128_5M...
+2025-02-04 13:44:47,128 - INFO - Data copied to items_hnsw_128_5M.
+2025-02-04 13:44:47,128 - INFO - Creating ivfflat index on items_ivfflat_128_5M...
+2025-02-04 13:45:44,421 - INFO - ivfflat with lists=100 index created for items_ivfflat_128_5M in 57.29 seconds or 0.95 minutes.
+2025-02-04 13:45:44,422 - INFO - Creating hnsw index on items_hnsw_128_5M...
+2025-02-04 16:03:26,774 - INFO - hnsw with m=16 and ef_construction=100 index created for items_hnsw_128_5M in 8262.35 seconds or 137.71 minutes.
+2025-02-04 16:03:26,777 - INFO - Data generation completed successfully.
+2025-02-04 16:03:26,779 - INFO - Database connection closed.

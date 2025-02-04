@@ -63,7 +63,17 @@ class DataGenerator:
         """Configure database session settings."""
         try:
             maintenance_work_mem = self.generator_config["maintenance_work_mem"]
-            self.cursor.execute(f"SET maintenance_work_mem = '{maintenance_work_mem}';")
+            # self.cursor.execute(f"SET maintenance_work_mem = '{maintenance_work_mem}';")
+            self.cursor.execute("SET maintenance_work_mem = '4GB';")
+            self.cursor.execute("SET work_mem = '128MB';")
+            # self.cursor.execute("SET shared_buffers = '8GB';")
+            self.cursor.execute("SET effective_cache_size = '24GB';")
+            self.cursor.execute("SET max_parallel_workers_per_gather = 6;")
+            self.cursor.execute("SET parallel_tuple_cost = 0.1;")
+            self.cursor.execute("SET parallel_setup_cost = 50;")
+            self.cursor.execute("SET force_parallel_mode = 'off';")
+            logging.info("PostgreSQL settings optimized for index building and benchmarking.")
+
             logging.info(f"Set maintenance_work_mem to {maintenance_work_mem}.")
         except KeyError as e:
             logging.error(f"Missing configuration for: {e}")

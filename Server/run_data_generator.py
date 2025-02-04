@@ -38,26 +38,4 @@ if __name__ == "__main__":
     generator.start()
 
 
-    #config change 5M
-    config["generator"]["num_rows"] = 5000000
-    config["generator"]["tables"] = {
-          "items_no_index_512_5M": None,
-          "items_ivfflat_512_5M": "ivfflat",
-          "items_hnsw_512_5M": "hnsw"
-        } 
-    generator = DataGenerator(config)
-    generator.start()
-
-
-    #config change 10M
-    config["generator"]["num_rows"] = 10000000
-    config["generator"]["tables"] = {
-          "items_no_index_512_10M": None,
-          "items_ivfflat_512_10M": "ivfflat",
-          "items_hnsw_512_10M": "hnsw"
-        } 
-    generator = DataGenerator(config)
-    generator.start()
-
-
 
