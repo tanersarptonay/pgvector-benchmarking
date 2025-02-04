@@ -26,6 +26,7 @@ if __name__ == "__main__":
         logging.error(f"Failed to load configuration: {e}")
         exit(1)
 
+
     # Initialize data generator
     generator = DataGenerator(config)
 
@@ -35,3 +36,28 @@ if __name__ == "__main__":
 
     # Start data generation
     generator.start()
+
+
+    #config change 5M
+    config["generator"]["num_rows"] = 5000000
+    config["generator"]["tables"] = {
+          "items_no_index_512_5M": None,
+          "items_ivfflat_512_5M": "ivfflat",
+          "items_hnsw_512_5M": "hnsw"
+        } 
+    generator = DataGenerator(config)
+    generator.start()
+
+
+    #config change 10M
+    config["generator"]["num_rows"] = 10000000
+    config["generator"]["tables"] = {
+          "items_no_index_512_10M": None,
+          "items_ivfflat_512_10M": "ivfflat",
+          "items_hnsw_512_10M": "hnsw"
+        } 
+    generator = DataGenerator(config)
+    generator.start()
+
+
+
