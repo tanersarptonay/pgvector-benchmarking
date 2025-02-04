@@ -41,6 +41,9 @@ if __name__ == "__main__":
         query_configs = benchmark_config["query_configs"]
         dimensions = benchmark_config["dimensions"]
 
+        host_ip = db_config["hosts"][str(dimensions)]
+        db_config["host"] = host_ip
+
         # Initialize and start benchmark
         benchmark_runner = BenchmarkRunner(
             tables=tables,
