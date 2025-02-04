@@ -259,7 +259,7 @@ class BenchmarkRunner:
                         warm_up=warm_up
                     )
                     
-                    if self.results:
+                    if result:
                         self.results.append(result)
                         self.append_result_to_csv(result)
 
