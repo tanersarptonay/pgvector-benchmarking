@@ -1,0 +1,94 @@
+2025-02-04 14:11:21,792 - INFO - Warm-up for items_no_index_256_1M with 100 queries and 10 clients...
+2025-02-04 14:11:26,728 - INFO - Received termination signal (2). Cleaning up...
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - INFO - Database connection closed.
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: cursor already closed
+2025-02-04 14:11:28,316 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,319 - INFO - Cleanup complete. Exiting.
+2025-02-04 14:11:28,317 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,318 - ERROR - Error running query on items_no_index_256_1M: connection pointer is NULL
+
+2025-02-04 14:11:28,321 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,318 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,319 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,319 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,317 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,323 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,320 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,320 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,321 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,326 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,318 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,322 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,324 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,321 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,327 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,324 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,328 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,325 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,322 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,324 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,325 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,329 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,329 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,328 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,330 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,331 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,330 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,331 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,332 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,332 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,333 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,333 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,334 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,334 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,334 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,335 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,335 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,336 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,336 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,337 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,337 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,337 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,338 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,338 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,339 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,339 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,340 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,340 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,340 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,341 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,341 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,341 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,342 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,342 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,343 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,343 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,344 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,344 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,345 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,345 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,345 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,346 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,346 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,346 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,347 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,347 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,348 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,348 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,348 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,349 - ERROR - Error running query on items_no_index_256_1M: connection already closed
+2025-02-04 14:11:28,350 - INFO - Database connection closed.

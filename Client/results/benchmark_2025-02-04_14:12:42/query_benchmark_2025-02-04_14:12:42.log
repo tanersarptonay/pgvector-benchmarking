@@ -1,0 +1,6 @@
+2025-02-04 14:12:42,544 - INFO - Database connection closed.
+2025-02-04 14:12:42,544 - ERROR - Error during benchmarking: parameter "max_connections" cannot be changed without restarting the server
+
+2025-02-04 14:12:42,545 - INFO - Received termination signal (15). Cleaning up...
+2025-02-04 14:12:42,545 - INFO - Database connection closed.
+2025-02-04 14:12:42,545 - INFO - Cleanup complete. Exiting.
