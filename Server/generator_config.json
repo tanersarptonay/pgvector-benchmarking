@@ -1,16 +1,16 @@
 {
   "generator": {
-      "num_rows": 5000000,
-      "dimensions": 128,
+      "num_rows": 1000000,
+      "dimensions": 512,
       "batch_size": 2000,
       "seed": 23,
       "recreate_tables": true,
       "copy_data": true,
       "maintenance_work_mem": "1GB",
       "tables": {
-        "items_no_index_128_1M": null,
-        "items_ivfflat_128_1M": "ivfflat",
-        "items_hnsw_128_1M": "hnsw"
+        "items_no_index_512_1M": null,
+        "items_ivfflat_512_1M": "ivfflat",
+        "items_hnsw_512_1M": "hnsw"
       },
       "index_configs": {
         "ivfflat": "WITH (lists = 100)",
