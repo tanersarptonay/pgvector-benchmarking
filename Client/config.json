@@ -12,8 +12,8 @@
     },
     "benchmark": {
       "tables": [
-        "items_no_index_128_1M", "items_ivfflat_128_1M", "items_hnsw_128_1M", 
-        "items_no_index_128_5M", "items_ivfflat_128_5M", "items_hnsw_128_5M"
+        "items_no_index_128_500K", "items_ivfflat_128_500K", "items_hnsw_128_500K", 
+        "items_no_index_128_500K", "items_ivfflat_128_500K", "items_hnsw_128_500K"
       ],
       "query_configs": [
         { "num_queries": 1000,  "num_clients": 1000 }
