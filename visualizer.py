@@ -39,13 +39,18 @@ def plot_latency_distribution(df):
     plt.show()
 
 
-def plot_throughput_vs_indexing(df):
-    """Generates a bar chart comparing query throughput across indexing strategies and dataset sizes."""
+def plot_throughput_vs_indexing(df, overall_throughput=True):
+    """Generates a bar chart comparing query throughput across indexing strategies and dataset sizes.
+       If overall_throughput is False, results don't include the time between queries.
+    """
+    thr = "overall_throughput" if overall_throughput else "throughput"
+    thr_title = "Overall Throughput" if overall_throughput else "Throughput"
+
     plt.figure(figsize=(10, 6))
-    sns.barplot(data=df, x="indexing_type", y="throughput", hue="dataset_size", palette="pastel")
+    sns.barplot(data=df, x="indexing_type", y=thr, hue="dataset_size", palette="pastel")
     plt.xlabel("Indexing Strategy")
-    plt.ylabel("Corrected Query Throughput (queries/sec)")
-    plt.title("Corrected Query Throughput Across Indexing Strategies")
+    plt.ylabel(f"{thr_title} (queries/sec)")
+    plt.title(f"{thr_title} Across Indexing Strategies")
     plt.legend(title="Dataset Size")
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.show()
@@ -63,25 +68,33 @@ def plot_scalability(df):
     plt.show()
 
 
-def plot_throughput_vs_dimension(df):
-    """Generates a line chart showing query throughput across different embedding dimensions for each indexing strategy."""
+def plot_throughput_vs_dimension(df, overall_throughput=True):
+    """Generates a line chart showing query throughput across different embedding dimensions for each indexing strategy.
+       If overall_throughput is False, results don't include the time between queries.
+    """
+    thr = "overall_throughput" if overall_throughput else "throughput"
+    thr_title = "Overall Throughput" if overall_throughput else "Throughput"
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df, x="dimension", y="throughput", hue="indexing_type", marker="o", palette="Dark2")
+    sns.lineplot(data=df, x="dimension", y=thr, hue="indexing_type", marker="o", palette="Dark2")
     plt.xlabel("Embedding Dimensionality")
-    plt.ylabel("Query Throughput (queries/sec)")
-    plt.title("Throughput Across Different Embedding Dimensions")
+    plt.ylabel(f"{thr_title} (queries/sec)")
+    plt.title(f"{thr_title} Across Different Embedding Dimensions")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.show()
 
 
-def plot_throughput_vs_dataset_size(df):
-    """Generates a line chart showing query throughput across different dataset sizes for each indexing strategy."""
+def plot_throughput_vs_dataset_size(df, overall_throughput=True):
+    """Generates a line chart showing query throughput across different dataset sizes for each indexing strategy.
+       If overall_throughput is False, results don't include the time between queries.
+    """
+    thr = "overall_throughput" if overall_throughput else "throughput"
+    thr_title = "Overall Throughput" if overall_throughput else "Throughput"
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df, x="dataset_size", y="throughput", hue="indexing_type", marker="o", palette="Set1")
+    sns.lineplot(data=df, x="dataset_size", y=thr, hue="indexing_type", marker="o", palette="Set1")
     plt.xlabel("Dataset Size (Rows)")
-    plt.ylabel("Query Throughput (queries/sec)")
-    plt.title("Throughput Across Different Dataset Sizes")
+    plt.ylabel(f"{thr_title} (queries/sec)")
+    plt.title(f"{thr_title} Across Different Dataset Sizes")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.show()
