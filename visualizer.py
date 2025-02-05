@@ -36,10 +36,12 @@ def plot_latency_heatmap_size(df):
     plt.figure(figsize=(8, 6))
     df_agg = df.groupby(["dataset_size", "indexing_type"], as_index=False).agg({"avg_latency": "mean"})
     pivot_latency = df_agg.pivot(index="dataset_size", columns="indexing_type", values="avg_latency")
+    title = "Average Latency by Indexing Strategy and Dataset Size"
     sns.heatmap(pivot_latency, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
     plt.xlabel("Indexing Strategy")
     plt.ylabel("Dataset Size (Rows)")
-    plt.title("Average Latency by Indexing Strategy and Dataset Size")
+    plt.title(title)
+    plt.savefig(f"visualize_results/{title}.png")
     plt.show()
 
 def plot_latency_heatmap_dims(df):
@@ -47,15 +49,18 @@ def plot_latency_heatmap_dims(df):
     plt.figure(figsize=(8, 6))
     df_agg = df.groupby(["dimension", "indexing_type"], as_index=False).agg({"avg_latency": "mean"})
     pivot_latency = df_agg.pivot(index="dimension", columns="indexing_type", values="avg_latency")
+    title = "Average Latency by Indexing Strategy and Dimensions"
     sns.heatmap(pivot_latency, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
     plt.xlabel("Indexing Strategy")
     plt.ylabel("Dimensions")
     plt.title("Average Latency by Indexing Strategy and Dimensions")
+    plt.savefig(f"visualize_results/{title}.png")
     plt.show()
 
 
 def plot_latency_vs_dimension(df):
     """Generates a line chart comparing latency across different embedding dimensions for each indexing strategy."""
+    title = "Average Latency by Embedding Dimensionality"
     plt.figure(figsize=(10, 6))
     sns.lineplot(data=df, x="dimension", y="avg_latency", hue="indexing_type", marker="o", palette="Dark2")
     plt.xlabel("Embedding Dimensionality")
@@ -63,6 +68,7 @@ def plot_latency_vs_dimension(df):
     plt.title("Impact of Embedding Dimensionality on Latency")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/{title}.png")
     plt.show()
 
 
@@ -75,6 +81,7 @@ def plot_latency_distribution(df):
     plt.title("Latency Distribution Across Indexing Strategies")
     plt.legend(title="Dataset Size")
     plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig("visualize_results/Latency Distribution Across Indexing Strategies.png")
     plt.show()
 
 
@@ -88,6 +95,7 @@ def plot_latency_distribution_only_index(df):
     plt.title("Latency Distribution Across Indexing Strategies")
     plt.legend(title="Dataset Size")
     plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig("visualize_results/Latency Distribution Across Indexing Strategies.png")
     plt.show()
 
 
@@ -105,6 +113,7 @@ def plot_throughput_vs_indexing(df, overall_throughput=True):
     plt.title(f"{thr_title} Across Indexing Strategies")
     plt.legend(title="Dataset Size")
     plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/{thr_title} Across Indexing Strategies.png")
     plt.show()
 
 def plot_latency_vs_indexing(df):
@@ -119,6 +128,7 @@ def plot_latency_vs_indexing(df):
     plt.title(f"Latency Across Indexing Strategies")
     plt.legend(title="Dataset Size")
     plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/Latency Across Indexing Strategies.png")
     plt.show()
 
 def plot_scalability(df, indexing_types=["IVFFlat", "HNSW", "No Index"], dimensions=[128, 256, 512]):
@@ -132,6 +142,7 @@ def plot_scalability(df, indexing_types=["IVFFlat", "HNSW", "No Index"], dimensi
     plt.title(f"Scalability: Dataset Size vs. Latency Across Indexing Strategies, dimensions {dimensions}")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/Scalability: Dataset Size vs. Latency Across Indexing Strategies, dimensions {dimensions}.png")
     plt.show()
 
 
@@ -148,6 +159,7 @@ def plot_throughput_vs_dimension(df, overall_throughput=True):
     plt.title(f"{thr_title} Across Different Embedding Dimensions")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/{thr_title} Across Different Embedding Dimensions.png")
     plt.show()
 
 
@@ -164,5 +176,6 @@ def plot_throughput_vs_dataset_size(df, overall_throughput=True):
     plt.title(f"{thr_title} Across Different Dataset Sizes")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
+    plt.savefig(f"visualize_results/{thr_title} Across Different Dataset Sizes.png")
     plt.show()
 
