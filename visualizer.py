@@ -3,6 +3,34 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+def load_results(result128, result256, result512):
+    """Loads the results from the CSV files and concatenates them into a single DataFrame."""
+
+    # Load the benchmark result files
+    df_128 = pd.read_csv("visualize_results/128.csv")
+    df_256 = pd.read_csv("visualize_results/256.csv")
+    df_512 = pd.read_csv("visualize_results/512.csv")
+
+    # Add dimension column to differentiate datasets
+    df_128["dimension"] = 128
+    df_256["dimension"] = 256
+    df_512["dimension"] = 512
+
+    # Merge all datasets into a single DataFrame
+    df_all = pd.concat([df_128, df_256, df_512], ignore_index=True)
+
+    # Extract dataset size and indexing type from the table_name column
+    df_all["dataset_size"] = df_all["table_name"].apply(lambda x: "500K" if "500K" in x else "1M" if "1M" in x else "5M")
+    df_all["indexing_type"] = df_all["table_name"].apply(lambda x: "No Index" if "no_index" in x else ("IVFFlat" if "ivfflat" in x else "HNSW"))
+
+    # Convert dataset_size to numeric for proper ordering
+    df_all["dataset_size"] = df_all["dataset_size"].map({"500K": 500000, "1M": 1000000, "5M": 5000000})
+
+    # Calculate throughput manually to ensure correctness
+    df_all["overall_throughput"] = df_all["num_queries"] / df_all["elapsed_time"]
+
+    return df_all
+
 def plot_latency_heatmap_size(df):
     """Generates a heatmap for average latency comparisons across indexing strategies and dataset sizes."""
     plt.figure(figsize=(8, 6))

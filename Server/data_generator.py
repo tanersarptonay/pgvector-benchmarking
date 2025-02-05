@@ -155,7 +155,6 @@ class DataGenerator:
                 """)
                 self.conn.commit()
 
-                # smallcase, remove () and replace , with and
                 log_config = index_config.lower().replace("(", "").replace(")", "").replace(",", " and").replace(" = ", "=")
 
                 index_creation_time = round(time.time() - index_creation_start, 2)

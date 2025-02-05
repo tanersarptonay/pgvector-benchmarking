@@ -91,10 +91,8 @@ class BenchmarkRunner:
         avg_latency = sum(latencies) / len(latencies)
         min_latency = min(latencies)
         max_latency = max(latencies)
-        # Use Python's built-in statistics module to get stdev
-        stddev_latency = statistics.pstdev(latencies)  # population stdev
+        stddev_latency = statistics.pstdev(latencies)
 
-        # For percentiles, you can use statistics.quantiles in Python 3.8+
         sorted_lats = sorted(latencies)
         def percentile(p):
             # position of percentile in sorted array
@@ -126,17 +124,17 @@ class BenchmarkRunner:
     def apply_postgresql_settings(self):
         """Optimize PostgreSQL settings for high-concurrency query benchmarking."""
         with self.db.get_cursor() as cursor:
-            # Memory settings for efficient query execution
+            # Memory settings
             cursor.execute("SET work_mem = '256MB';")  # Allocate more memory per query
             cursor.execute("SET effective_cache_size = '24GB';")  # Help query planner use OS cache
 
-            # Enable parallel execution for faster queries
-            cursor.execute("SET max_parallel_workers_per_gather = 6;")  # Allow parallel execution
+            # Parallel execution settings
+            cursor.execute("SET max_parallel_workers_per_gather = 6;")
             cursor.execute("SET parallel_tuple_cost = 0.1;")
             cursor.execute("SET parallel_setup_cost = 50;")
             cursor.execute("SET force_parallel_mode = 'off';")  # Let PostgreSQL decide best parallelism
 
-            # Optimize for multi-client workloads
+            # Optimize for multi-client workloads settings
             cursor.execute("SET idle_in_transaction_session_timeout = '5min';")  # Close idle connections
             cursor.execute("SET statement_timeout = '300000';")  # Prevent long-running queries from blocking
             logging.info("Applied PostgreSQL settings for multi-client benchmarking.")
@@ -144,7 +142,7 @@ class BenchmarkRunner:
     def run_benchmark(self, table_name, num_queries, num_clients, warm_up=False):
         """
         Run the benchmark for a single table with the given concurrency.
-        If warm_up=True, we'll do these queries but won't store final stats in self.results.
+        If warm_up=True, Do these queries but don't store final stats in self.results.
         """
         label = "Warm-up" if warm_up else "Benchmark"
         logging.info(f"{label} for {table_name} with {num_queries} queries and {num_clients} clients...")
@@ -156,7 +154,6 @@ class BenchmarkRunner:
         failure_count = 0
 
         # Create or reuse executor
-        # We'll create a new one for each run_benchmark to isolate concurrency
         with ThreadPoolExecutor(max_workers=num_clients) as executor:
             futures = [executor.submit(self.run_query, table_name) for _ in range(num_queries)]
             for future in futures:
@@ -173,7 +170,7 @@ class BenchmarkRunner:
 
         # Log basic stats
         if warm_up:
-            # For a warm-up, we can just log and not save to CSV results
+            # For a warm-up, just log and not save to CSV results
             logging.info(f"Finished warm-up for {table_name}, ignoring results in CSV.")
             return None
 
@@ -215,7 +212,6 @@ class BenchmarkRunner:
             logging.info("No results to save (maybe only warm-up runs?).")
             return
 
-        # Dynamically gather all keys from the first result
         fieldnames = list(self.results[0].keys())
         with open(self.results_file, mode="w", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -228,7 +224,6 @@ class BenchmarkRunner:
         """Append a single result entry to the CSV file in real-time."""
         file_exists = os.path.isfile(self.results_file)
 
-        # copy the result entry to avoid modifying the original dict and remove latencies
         result_entry = result_entry.copy()
         result_entry.pop("latencies", None)
 
@@ -274,7 +269,6 @@ class BenchmarkRunner:
             self.apply_postgresql_settings()
 
             for config in self.query_configs:
-                # Some users put "warm_up" in the config, default to False if missing
                 warm_up = config.get("warm_up", False)
                 num_queries = config["num_queries"]
                 num_clients = config["num_clients"]

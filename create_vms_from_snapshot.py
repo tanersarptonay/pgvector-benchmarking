@@ -28,10 +28,10 @@ def create_vm_from_snapshot(vm_name, disk_size):
         "gcloud", "compute", "instances", "create", vm_name,
         "--project", PROJECT_ID,
         "--zone", ZONE,
-        "--machine-type", "e2-standard-4",      # adjust as needed
+        "--machine-type", "e2-standard-4",      
         f"--boot-disk-size={disk_size}GB",
         "--boot-disk-type=pd-ssd",
-        f"--source-snapshot={SNAPSHOT_NAME}",   # using --source-snapshot
+        f"--source-snapshot={SNAPSHOT_NAME}",   
         "--tags=postgresql"
     ]
     try:
@@ -65,9 +65,9 @@ def main():
         vm_name = vm_info["name"]
         disk_size = vm_info["disk_size"]
         create_vm_from_snapshot(vm_name, disk_size)
-        time.sleep(10)  # give some time for each VM to initialize
+        time.sleep(10)  # Wait for each VM to initialize
 
-    # Step 2: Resize file systems (optional if the OS auto-resizes)
+    # Step 2: Resize file systems
     for vm_info in NEW_VMS:
         vm_name = vm_info["name"]
         resize_file_system(vm_name)

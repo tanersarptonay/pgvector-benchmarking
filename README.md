@@ -10,7 +10,7 @@ It evaluates:
 
 ## **Setup Instructions**
 ### **Deploy PostgreSQL VMs**
-Two **base VMs** are created for `pgvector` and load generation.
+Two **base VMs** are created, one for `pgvector` and the other for load generation.
 Additional **server and client VMs** are cloned from these bases using `create_vms_from_snapshot.py`.
 
 To create VMs:
@@ -18,8 +18,8 @@ To create VMs:
 python create_vms_from_snapshot.py
 ```
 - PostgreSQL runs on **3 VMs** for different dimensions (`128D`, `256D`, `512D`).
-- Uses **Google Cloud Compute Engine** with `e2-standard-4` instances.
-- Additional **client VMs** are created to generate query loads.
+- Uses **Google Cloud Compute Engine** with `e2-standard-8` instances.
+- Additional **client VMs** are created with `e2-small` instances to generate query loads.
 
 ---
 

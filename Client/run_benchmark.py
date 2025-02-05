@@ -22,8 +22,7 @@ def cleanup(signum, frame):
     sys.exit(0)
 
 if __name__ == "__main__":
-    # Optional: You can still use a simple or advanced logger setup.
-    setup_logger("benchmark.log")  # from your existing utils.py
+    setup_logger("benchmark.log")
 
     # Attach signal handlers for graceful shutdown
     signal.signal(signal.SIGINT, cleanup)
