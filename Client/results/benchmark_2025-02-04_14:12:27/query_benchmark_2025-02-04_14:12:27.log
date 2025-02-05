@@ -1,6 +1,0 @@
-2025-02-04 14:12:27,307 - INFO - Database connection closed.
-2025-02-04 14:12:27,307 - ERROR - Error during benchmarking: parameter "shared_buffers" cannot be changed without restarting the server
-
-2025-02-04 14:12:27,308 - INFO - Received termination signal (15). Cleaning up...
-2025-02-04 14:12:27,308 - INFO - Database connection closed.
-2025-02-04 14:12:27,308 - INFO - Cleanup complete. Exiting.
