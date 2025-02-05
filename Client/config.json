@@ -12,13 +12,13 @@
     },
     "benchmark": {
       "tables": [
-        "items_no_index_128_1M", "items_ivfflat_128_1M", "items_hnsw_128_1M", 
-        "items_no_index_128_5M", "items_ivfflat_128_5M", "items_hnsw_128_5M"
+        "items_no_index_512_1M", "items_ivfflat_512_1M", "items_hnsw_512_1M", 
+        "items_no_index_512_5M", "items_ivfflat_512_5M", "items_hnsw_512_5M"
       ],
       "query_configs": [
         { "num_queries": 1000,  "num_clients": 1000 }
       ],
-      "dimensions": 128
+      "dimensions": 512
     }
   }
   
