@@ -28,7 +28,7 @@ Ensure **Python 3.x** is installed. Then run:
 ```bash
 pip install -r requirements.txt
 ```
-Ensure **PostgreSQL with pgvector** is installed.
+Ensure **PostgreSQL with pgvector** is installed with the commands listed in **setup_server.txt**
 
 ---
 
