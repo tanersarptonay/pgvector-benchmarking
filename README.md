@@ -5,12 +5,12 @@ This project benchmarks **pgvector performance** in **PostgreSQL** under **seman
 It evaluates:
 - **Indexing strategies:** `IVFFlat`, `HNSW`, and `No Index`
 - **Dimensionality impact:** `128D`, `256D`, `512D`
-- **Dataset sizes:** `1M`, `5M`, `10M`
+- **Dataset sizes:** `500K`, `1M`, `5M`
 - **Query loads:** Various concurrency levels
 
 ## **Setup Instructions**
 ### **Deploy PostgreSQL VMs**
-Two **base VMs** are created for for `pgvector` and load generation.
+Two **base VMs** are created for `pgvector` and load generation.
 Additional **server and client VMs** are cloned from these bases using `create_vms_from_snapshot.py`.
 
 To create VMs:
@@ -28,7 +28,8 @@ Ensure **Python 3.x** is installed. Then run:
 ```bash
 pip install -r requirements.txt
 ```
-Ensure **PostgreSQL with pgvector** is installed with the commands listed in **setup_server.txt**
+Ensure **PostgreSQL** with **pgvector** is installed.
+Ensure **pg_hba.conf** is correctly updated with the load generator IPs.
 
 ---
 
@@ -37,39 +38,69 @@ Run:
 ```bash
 python run_data_generator.py
 ```
-- Populates datasets (1M, 5M, 10M embeddings).
+- Populates datasets (`500K`, `1M`, `5M` embeddings).
 - Creates **IVFFlat & HNSW indexes**.
 
 ---
 
 ## **Running Benchmarks**
-To execute the benchmarking suite:
+The benchmarking suite evaluates:
+- The **impact of indexing (`No Index`, `IVFFlat`, `HNSW`) on query latency**.
+- **Throughput variations** under different concurrency levels (10, 50, 100+ clients).
+- **Scalability trends** as dataset sizes increase (500K → 1M → 5M embeddings).
+
+To execute the benchmark inside the **Client VM**, run:
 ```bash
 python run_benchmark.py
 ```
 - Reads configuration from `config.json`
-- Benchmarks each table across **different concurrency levels**
+- Benchmarks each table across **different concurrency levels** and **number of queries**.
 - Stores logs in `results/`
 
 ---
 
 ## **Example Output (Benchmark Results)**
 Results are stored in CSV format inside `results/`.  
-Here’s an example result:
+Each row represents a benchmark result for a table with a specific indexing strategy and dataset size.
 
-```
-table_name,num_queries,num_clients,avg_latency,min_latency,max_latency,p50_latency,p90_latency,p95_latency,p99_latency,stddev_latency,throughput,success_rate,failure_rate,elapsed_time
-items_no_index_128_1M,5000,10,1.493,0.145,5.742,1.447,1.546,2.406,3.232,0.384,0.669,100.0,0.0,747.549
-items_ivfflat_128_1M,5000,10,0.044,0.025,0.151,0.044,0.047,0.049,0.081,0.007,22.240,100.0,0.0,22.600
-items_hnsw_128_1M,5000,10,0.040,0.020,0.146,0.038,0.045,0.057,0.076,0.008,24.814,100.0,0.0,20.264
-```
+### **Key Columns Explained:**
+| Column Name | Description |
+|-------------|------------|
+| `table_name` | Table being benchmarked (index type + dimension + dataset size) |
+| `num_queries` | Number of queries executed |
+| `num_clients` | Number of concurrent clients |
+| `avg_latency` | Average time taken per query (seconds) |
+| `p50_latency` | 50th percentile (median) latency |
+| `p90_latency` | 90th percentile latency |
+| `p99_latency` | 99th percentile latency (worst-case scenarios) |
+| `throughput` | Queries executed per second (not counting the time between two queries) |
+| `elapsed_time` | Total time taken for benchmark run |
 
-To visualize results:
+---
+
+## **Visualizing Results**
+To generate performance charts put the results in **visualize_results**
 ```bash
-python analyze_results.py
+python visualizer.py
 ```
+### **Charts Included:**
 - **Latency Trends:** P50, P90, P99 latencies across index types.
 - **Throughput Comparisons:** Queries per second by dataset size.
 - **Dimensionality Trade-offs:** Scaling impact of 128D, 256D, 512D.
+- **Scalability Impact:** How dataset size affects performance.
+- **Throughput vs. Latency Analysis:** Direct comparison of performance.
 
 ---
+
+## **Troubleshooting**
+### **Benchmarking script crashes or fails to connect to PostgreSQL**
+- Ensure that **PostgreSQL is running** on the correct VM and accepting connections.
+    ```bash
+    sudo systemctl status postgresql
+    ```
+- Check the **pg_hba.conf** file to allow external connections.
+- Check if the experiment and database configurations in **Client/config.json** are correct.
+
+### **Visualizations are empty or incorrect**
+- Make sure that the `results/` directory contains the benchmark output files before running `visualizer.py`.
+
