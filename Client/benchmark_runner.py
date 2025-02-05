@@ -25,9 +25,13 @@ class BenchmarkRunner:
 
         current_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
         self.benchmark_result_folder = os.path.join("results", f"benchmark_{current_time}")
+        self.latencies_folder = os.path.join(self.benchmark_result_folder, "latencies")
 
         if not os.path.exists(self.benchmark_result_folder):
             os.makedirs(self.benchmark_result_folder)
+
+        if not os.path.exists(self.latencies_folder):
+            os.makedirs(self.latencies_folder)
 
         # Set up logging
         log_file_path = os.path.join(self.benchmark_result_folder, f"query_benchmark_{current_time}.log")
@@ -200,7 +204,8 @@ class BenchmarkRunner:
             "throughput": stats["throughput"],
             "success_rate": success_rate,
             "failure_rate": failure_rate,
-            "elapsed_time": elapsed_time
+            "elapsed_time": elapsed_time,
+            "latencies": latencies
         }
         return result_entry
 
@@ -223,6 +228,10 @@ class BenchmarkRunner:
         """Append a single result entry to the CSV file in real-time."""
         file_exists = os.path.isfile(self.results_file)
 
+        # copy the result entry to avoid modifying the original dict and remove latencies
+        result_entry = result_entry.copy()
+        result_entry.pop("latencies", None)
+
         with open(self.results_file, mode="a", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=result_entry.keys())
 
@@ -233,6 +242,25 @@ class BenchmarkRunner:
             writer.writerow(result_entry)
 
         logging.info(f"Appended result for {result_entry['table_name']} to CSV.")
+
+    def save_latencies(self, result_entry):
+        """Save latencies to a separate file for further analysis."""
+        table_name = result_entry["table_name"]
+        latencies = result_entry["latencies"]
+        num_queries = result_entry["num_queries"]
+        num_clients = result_entry["num_clients"]
+
+        if not latencies:
+            logging.info(f"No latencies to save for {table_name}.")
+            return
+
+        latencies_file = os.path.join(self.latencies_folder, f"{table_name}_{num_queries}q_{num_clients}c_latencies.csv")
+        with open(latencies_file, mode="w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(latencies)
+
+        logging.info(f"Latencies saved to {latencies_file} for {table_name}.")
+
 
     def shutdown(self):
         """Close DB connection and log final message."""
@@ -262,6 +290,7 @@ class BenchmarkRunner:
                     if result:
                         self.results.append(result)
                         self.append_result_to_csv(result)
+                        self.save_latencies(result)
 
 
         finally:
