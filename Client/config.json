@@ -12,11 +12,10 @@
     },
     "benchmark": {
       "tables": [
-        "items_no_index_128_500K", "items_ivfflat_256_500K", "items_hnsw_256_500K", 
         "items_no_index_256_500K", "items_ivfflat_256_500K", "items_hnsw_256_500K"
       ],
       "query_configs": [
-        { "num_queries": 2000,  "num_clients": 1000 }
+        { "num_queries": 1000,  "num_clients": 1000 }
       ],
       "dimensions": 256
     }
