@@ -121,27 +121,15 @@ def plot_latency_vs_indexing(df):
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.show()
 
-def plot_scalability(df):
+def plot_scalability(df, indexing_types=["IVFFlat", "HNSW", "No Index"], dimensions=[128, 256, 512]):
     """Generates a line chart showing how latency scales with dataset size for each indexing strategy."""
-    df = df[df["indexing_type"].isin(["IVFFlat", "HNSW", "No Index"])]
+    df = df[df["indexing_type"].isin(indexing_types)]
+    df = df[df["dimension"].isin(dimensions)]
     plt.figure(figsize=(10, 6))
     sns.lineplot(data=df, x="dataset_size", y="avg_latency", hue="indexing_type", marker="o", palette="Dark2")
     plt.xlabel("Dataset Size (Rows)")
     plt.ylabel("Average Latency (s)")
-    plt.title("Scalability: Dataset Size vs. Latency Across Indexing Strategies")
-    plt.legend(title="Indexing Strategy")
-    plt.grid(True, linestyle="--", alpha=0.7)
-    plt.show()
-
-
-def plot_scalability_only_index(df):
-    """Generates a line chart showing how latency scales with dataset size for each indexing strategy."""
-    df = df[df["indexing_type"].isin(["IVFFlat", "HNSW"])]
-    plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df, x="dataset_size", y="avg_latency", hue="indexing_type", marker="o", palette="Dark2")
-    plt.xlabel("Dataset Size (Rows)")
-    plt.ylabel("Average Latency (s)")
-    plt.title("Scalability: Dataset Size vs. Latency Across Indexing Strategies")
+    plt.title(f"Scalability: Dataset Size vs. Latency Across Indexing Strategies, dimensions {dimensions}")
     plt.legend(title="Indexing Strategy")
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.show()

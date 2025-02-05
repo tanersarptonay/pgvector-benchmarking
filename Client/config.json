@@ -1,23 +1,23 @@
 {
-    "db": {
-      "hosts": {
-        "128": "34.32.35.86",
-        "256": "34.32.54.83",
-        "512": "34.32.81.37"
-      },
-      "port": 5432,
-      "dbname": "test_db",
-      "user": "postgres",
-      "password": "wildones813"
+  "db": {
+    "hosts": {
+      "128": "34.32.35.86",
+      "256": "34.32.54.83",
+      "512": "34.32.81.37"
     },
-    "benchmark": {
-      "tables": [
-        "items_no_index_256_500K", "items_ivfflat_256_500K", "items_hnsw_256_500K"
-      ],
-      "query_configs": [
-        { "num_queries": 1000,  "num_clients": 1000 }
-      ],
-      "dimensions": 256
-    }
+    "port": 5432,
+    "dbname": "test_db",
+    "user": "postgres",
+    "password": "wildones813"
+  },
+  "benchmark": {
+    "tables": [
+      "items_no_index_256_500K", "items_ivfflat_256_500K", "items_hnsw_256_500K"
+    ],
+    "query_configs": [
+      { "num_queries": 1000,  "num_clients": 1000 }
+    ],
+    "dimensions": 256
   }
+}
   
